@@ -1,0 +1,70 @@
+<html>
+    <head>
+        <title>Record</title>
+        <link rel="stylesheet" href="/css/table.css">
+    </head>
+    <body>
+        <header class="header">
+            <div class="head">
+                <div><a href="/main/home">HOME</a></div>
+                <div><a href="/main/dashboard">DASHBOARD</a></div>
+                <div><a href="/main/table">RECORD</a></div>
+                <div id="premium">PREMIUM</div>
+                <div class="popup-container" id="one">
+                    <div class="popup">
+                        <div style="color: black;" class="close">x </div>
+                        <h1 style="color: black;">Premium Membership</h1>
+                        <button id="buy-now">Buy Now.</button>
+                    </div>
+                </div>
+                <div class="popup-container" id="two">
+                    <div class="popup">
+                        <div class="close">x </div>
+                        <h1>Premium Membership</h1>
+                        <div>You have already purchase it.</div>
+                    </div>
+                </div>
+                <div id="sign-out">Sign Out</div>
+            </div> 
+            <div class="generic">
+                <h1>Expense Tracker</h1>
+            </div>
+        </header>
+        <div class="container">
+            <nav id="nav">
+                <ul>
+                    <li><a id="daily">DAILY</a></li>
+                    <li><a id="monthly">MONTHLY</a></li>
+                    <li><a id="yearly">YEARLY</a></li>
+                </ul>
+            </nav>
+            <h1>Responsive Table</h1>
+            <table class="rwd-table">
+                <tbody id="table">
+                  <tr>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th>Amount</th>
+                  </tr>
+                  <!-- <tr>
+                    <td data-th="Supplier Code">
+                      UPS5005
+                    </td>
+                    <td data-th="Supplier Name">
+                      UPS
+                    </td>
+                    <td data-th="Invoice Number">
+                      ASDF19218
+                    </td>
+                    <td data-th="Invoice Date">
+                      06/25/2016
+                    </td>
+                  </tr> -->
+                </tbody>
+            </table>
+        </div>
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/javascript/table.js"></script>
+</html>

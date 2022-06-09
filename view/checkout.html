@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <title>Checkout Page</title>
+    </head>
+    <body>
+        <div>Order Id:- </div>
+        <div id="order_id"></div><br>
+        <button id="rzp-button1">Pay</button>
+        <br>
+        <br>
+        <br>
+        <br>
+        <hr>
+        <br>
+        <form action="/main/pay/verify" method="post">
+            <label for="order_id">Order Id: </label>
+            <input id="order_id" name="order_id"><br>
+            <label for="payment_id">Payment Id: </label>
+            <input id="payment_id" name="payment_id"><br>
+            <label for="razerpay_id">RazerPay Order Id: </label>
+            <input id="razerpay_id" name="razerpay_id"><br>
+            <label for="sign">Signature: </label>
+            <input id="sign" name="sign"><br>
+            <button type="submit">Verify</button>
+        </form>
+    </body>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script src="/javascript/checkout.js"></script>
+</html>

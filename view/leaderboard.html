@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Leaderboard</title>
+    <link rel="stylesheet" href="/css/leaderboard.css">
+	<link rel="stylesheet" href="/css/home.css">
+</head>
+
+<body>
+	<!-- 	<div class="blog">Visit <a href="#" target="_blank">My Blog</a></div> -->
+	<header class="header">
+		<div class="head">
+			<div><a href="/main/home">HOME</a></div>
+			<div><a href="/main/dashboard">DASHBOARD</a></div>
+			<div><a href="/main/table">RECORD</a></div>
+			<div id="premium">PREMIUM</div>
+			<div class="popup-container" id="one">
+				<div class="popup">
+					<div style="color: black;" class="close">x </div>
+					<h1 style="color: black;">Premium Membership</h1>
+					<button id="buy-now">Buy Now.</button>
+				</div>
+			</div>
+			<div class="popup-container" id="two">
+				<div class="popup">
+					<div class="close">x </div>
+					<h1>Premium Membership</h1>
+					<div>You have already purchase it.</div>
+				</div>
+			</div>
+			<div id="sign-out">Sign Out</div>
+		</div> 
+		<div class="generic">
+			<h1>Expense Tracker</h1>
+		</div>
+	</header>
+	<div class="container">
+		<div class="leaderboard">
+			<div class="head">
+				<i class="fas fa-crown"></i>
+				<h1>Leaderboard</h1>
+			</div>
+			<div class="body">
+				<ol id="order-list">
+					<!-- <li>
+						<mark>Jerry Wood</mark>
+						<small>948</small>
+					</li> -->
+				</ol>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="/javascript/leaderboard.js"></script>
+</html>

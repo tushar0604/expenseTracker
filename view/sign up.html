@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Sign Up</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/css/signup.css">
+    </head>
+    <body>
+        <div id="main">
+            <div id="form-image">
+                <form id="form" style="text-align:center;" action="/signUp-detail" method="post">
+                    <h1 style="color:#FC4F4F">Create Account</h1>
+                    <label for="name"></label>
+                    <input class="input" type="text" id="name" name="name" placeholder="Name"><br>
+                    <label for="email"></label>
+                    <input class="input" type="text" id="email" name="email" placeholder="Email"><br>
+                    <label for="phone"></label>
+                    <input class="input" type="text" id="phone" name="phone_no" placeholder="Phone No"><br>
+                    <label for="password"></label>
+                    <input class="input" type="password" id="password" name="password" placeholder="Password"><br>
+                    <input type="checkbox" id="aggrement" name="aggrement">
+                    <label style="font-size: 1.2rem; margin: 3px;" for="aggrement">I agree to the <span style="color:#EF2626 ">Terms</span> and <span style="color:#EF2626">Privacy Policy</span></label><br>
+                    <button type="submit">Sign Up</button>
+                    <a href="/sign-in" id="sign-in">Sign In</a>
+                </form>
+                <div>
+                    <img src="/images/expense.png">
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

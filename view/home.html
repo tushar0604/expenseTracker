@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="/css/home.css">
+    </head>
+    <body id="main">
+        <header class="header">
+            <div class="head">
+                <div><a href="/main/home">HOME</a></div>
+                <div><a href="/main/dashboard">DASHBOARD</a></div>
+                <div><a href="/main/table">RECORD</a></div>
+                <div id="premium">PREMIUM</div>
+                <div class="popup-container" id="one">
+                    <div class="popup">
+                        <div style="color: black;" class="close">x </div>
+                        <h1 style="color: black;">Premium Membership</h1>
+                        <button id="buy-now">Buy Now.</button>
+                    </div>
+                </div>
+                <div class="popup-container" id="two">
+                    <div class="popup">
+                        <div class="close">x </div>
+                        <h1>Premium Membership</h1>
+                        <div>You have already purchase it.</div>
+                    </div>
+                </div>
+                <div id="sign-out">Sign Out</div>
+            </div> 
+            <div class="generic">
+                <h1>Expense Tracker</h1>
+            </div>
+        </header>
+        <form id="form">
+            <label for="expense"></label>
+            <input type="number" id="expense" name="expense" min="0" max="10000" placeholder="Expense"><br>
+            <label for="categories"></label>
+            <select id="categories" name="categories" placeholder="Categories">
+                <option value="Movie">Movie</option>
+                <option value="Electricity">Electricity</option>
+                <option value="rent">Rent</option>
+                <option value="grocery">Grocery</option>
+                <option value="petrol">Petrol</option>
+                <option value="misc">Other</option>
+            </select><br>
+            <label for="describe"></label>
+            <textarea type="text" id="describe" name="describe" placeholder="Describe"></textarea><br>
+            <button type="submit" id="submit" form="form" value="Submit">Submit</button>
+        </form>   
+        <!-- <button type="button" id="update" value="Update">Update</button> -->
+        <!-- <ul id="unorder">
+        </ul> -->
+    </body>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/javascript/express.js"></script>
+</html>

@@ -1,0 +1,143 @@
+@import 'https://fonts.googleapis.com/css?family=Open+Sans:600,700';
+
+* {font-family: 'Open Sans', sans-serif;}
+
+* {
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0px;
+}
+
+.head{
+    display: flex;
+    height: 7%;
+    flex-direction: row;
+    align-items: center;
+    background-color: black;
+    justify-content: center;
+}
+
+.head div{
+    padding: 1rem 2rem 1rem 2rem;
+    font-size: 18px;
+    color: white;
+}
+
+.generic{
+    background-color: rgb(255, 103, 71);
+    color: white;
+    height: 180px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 300%;
+}
+
+.head #sign-out{
+    position: absolute;
+    right: 22px;
+    padding: 2px 4px 2px 4px;
+    border-color: white;
+    border-style: solid;
+    border-radius: 5px;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+a:hover{
+    color:rgb(255, 103, 71);
+}
+
+/* form of expense tracker */
+
+#form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 310px;
+    padding: 25px;
+    margin-left: 37%;
+    margin-top: 20px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 8px;
+}
+
+input, select, textarea{
+    width: 250px;
+    height: 40px;
+    padding: 12px;
+    margin: 10px;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: rgba(229, 228, 226, 0.8);
+    background-color: rgba(229, 228, 226, 0.3);
+}
+
+textarea{
+    height:100px
+}
+
+::placeholder{
+    color: gainsboro;
+}
+
+input::after{
+    border: solid;
+    border-color: #E4FBFB;
+}
+
+button, #sign-in{
+    width: 160px;
+    margin: 30px 10px 10px 10px;
+    padding: 13px 10px 13px 10px;
+    background-color: white;
+    border-style: solid;
+    border-radius: 10px;
+    border-color: rgb(255, 103, 71);
+    color: rgb(255, 103, 71);
+    font-weight: 700;
+}
+
+button:hover, #sign-in:hover{
+    background-color: rgb(255, 103, 71);
+    color: white;
+}
+
+/*premium pop up */
+.popup-container{
+    position:fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0,0,0, 0.5);
+    display: None;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-container.active{
+    display: flex;
+}
+
+.popup {
+    background-color: whitesmoke;
+    padding: 2rem;
+    width: 500px;
+    border-radius: 20px;
+    position: relative;
+}
+
+.popup .close{
+    top: 10px;
+    right: 10px;
+    position: absolute;
+}

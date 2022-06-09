@@ -1,0 +1,79 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0%;
+    background-color:#F5F5F5;
+}
+
+#main{
+    margin: 5% 15% 5% 15%;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0px 0px 15px #B9BEBE;
+}
+
+#form-image{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#form{
+    width: 500px;
+    padding: 25px;
+}
+
+img{
+    width: 350px;
+}
+
+.input{
+    width: 380px;
+    height: 40px;
+    padding: 12px;
+    margin: 10px;
+    border-radius: 5px;
+    border-style: solid;
+    border-color: rgba(229, 228, 226, 0.8);
+    background-color: rgba(229, 228, 226, 0.3);
+}
+
+::placeholder{
+    color: gainsboro;
+}
+
+.input::after{
+    border: solid;
+    border-color: #E4FBFB;
+}
+
+button, #sign-in{
+    width: 160px;
+    margin: 30px 10px 10px 10px;
+    padding: 13px 10px 13px 10px;
+    background-color: white;
+    border-style: solid;
+    border-radius: 10px;
+    border-color: rgb(255, 103, 71);
+    color: rgb(255, 103, 71);
+    font-weight: 700;
+}
+
+button:hover, #sign-in:hover{
+    background-color: rgb(255, 103, 71);
+    color: white;
+}
+
+#aggrement{
+    width: 20px;
+    height: 20px;
+}
+
+a{
+    text-decoration: none;
+    color: rgb(255, 103, 71);
+    font-weight: 600;
+}
+
