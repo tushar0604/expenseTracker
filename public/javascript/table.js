@@ -1,5 +1,6 @@
 const daily = document.getElementById('daily')
 const table = document.getElementById('table')
+const download = document.getElementById('download')
 
 daily.addEventListener('click', async (e)=>{
     e.preventDefault()
@@ -30,5 +31,18 @@ daily.addEventListener('click', async (e)=>{
             tr.appendChild(td4)
             table.appendChild(tr)
         });
+    })
+})
+
+download.addEventListener('click', async (e)=>{
+    e.preventDefault()
+    await axios.get('http://localhost:3000/main/download',{
+        headers:{
+            'Authorization': sessionStorage.getItem('token')
+        }
+    }).then(response => {
+        if (response.status===200){
+            window.location.href = response.data.fileurl
+        }
     })
 })
