@@ -1,6 +1,7 @@
 const path = require('path')
 const bcrypt = require('bcryptjs')
 const users = require('../model/user.js')
+const record = require('../model/record')
 const jwt = require('jsonwebtoken');
 const Razorpay = require('razorpay')
 const AWS = require('aws-sdk')
@@ -134,14 +135,28 @@ exports.table = (req,res,next) =>{
     ),'view','table.html'))
 }
 
-exports.daily = (req,res,next) =>{
-    req.user.getRecords()
+exports.daily = async (req,res,next) =>{
+    let id = req.user.id
+    let page
+    if (!req.query.page){
+        page = 1
+    }else{
+        page = req.query.page
+    }
+    let view = +req.query.view
+    let off = +(page-1)*view
+    const total = await req.user.countRecords()
+    // console.log(Object.keys(req.user.__proto__))
+    await req.user.getRecords({
+        offset:off,
+        limit:view
+    })
     .then(records =>{
         let daily_list = []
         records.forEach(record =>{
             daily_list.push(record)
         })
-        res.json(daily_list)
+        res.json({list:daily_list,total:total})
     })
 }
 

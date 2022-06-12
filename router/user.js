@@ -7,15 +7,13 @@ const users = require('../model/user.js')
 
 const authentication = (req,res,next)=>{
     const token = req.header('Authorization');
-    // console.log('This is th Token',token)
+    console.log('This is th Token',token)
     if (token){
         const userId = jwt.verify(token,process.env.TOKEN_SECRET);
         users.findByPk(userId.username)
         .then(user =>{
             req.user = user
             req.premium = user.premium
-            // console.log('this is user',user)
-            // console.log('this is premium',user.premium)
             next()
         })
         .catch(err =>{
