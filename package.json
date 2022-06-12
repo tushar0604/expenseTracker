@@ -10,6 +10,7 @@
   "author": "Tushar Singh",
   "license": "ISC",
   "dependencies": {
+    "aws-sdk": "^2.1152.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.0",
     "dotenv": "^16.0.1",

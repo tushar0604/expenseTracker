@@ -7,13 +7,16 @@ const users = require('../model/user.js')
 
 const authentication = (req,res,next)=>{
     const token = req.header('Authorization');
-    console.log('This is th Token',token)
+    // console.log('This is th Token',token)
     if (token){
         const userId = jwt.verify(token,process.env.TOKEN_SECRET);
         users.findByPk(userId.username)
         .then(user =>{
             req.user = user
-            return next()
+            req.premium = user.premium
+            // console.log('this is user',user)
+            // console.log('this is premium',user.premium)
+            next()
         })
         .catch(err =>{
             throw new Error(err);
@@ -24,12 +27,12 @@ const authentication = (req,res,next)=>{
     }
 }
 
-const premium_authentication = async (req,res,next)=>{
-    const token = req.header('Authorization');
-    const user = await jwt.verify(token,process.env.TOKEN_SECRET)
-    req.premium = user.premium
-    next()
-}
+// const premium_authentication = async (req,res,next)=>{
+//     const token = req.header('Authorization');
+//     const user = await jwt.verify(token,process.env.TOKEN_SECRET)
+//     req.premium = user.premium
+//     next()
+// }
 
 route.get('/sign-up', user.signup)
 route.post('/signUp-detail',user.detail)
@@ -44,11 +47,13 @@ route.get('/home', app.home)
 //tracker
 route.post('/tracker/addexpense',authentication ,app.add)
 
-route.get('/premium',premium_authentication, (req,res,next)=>{res.json(req.premium)})
+route.get('/premium',authentication, (req,res,next)=>{res.json(req.premium)})
 
 route.post('/buy-membership',app.membership)
 
 route.get('/order',app.order)
+
+route.post('/pay/verify', app.verify)
 
 route.get('/table',app.table)
 
@@ -56,11 +61,10 @@ route.get('/leaderboard', app.leaderboard)
 
 route.get('/dashboard', app.dashboard)
 
-route.post('/pay/verify', app.verify)
-
 //table
 route.get('/daily',authentication,app.daily)
 
+route.get('/download',authentication, app.download)
 // route.get('/monthly',app.monthly)
 
 // route.get('/yearly', app.yearly)

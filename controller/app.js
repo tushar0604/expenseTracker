@@ -3,6 +3,38 @@ const bcrypt = require('bcryptjs')
 const users = require('../model/user.js')
 const jwt = require('jsonwebtoken');
 const Razorpay = require('razorpay')
+const AWS = require('aws-sdk')
+
+function uploadtoS3(data,filename){
+    const BUCKET_NAME = 'userexpense'
+    const IAM_USER_KEY = 'process.env.IAMUser_key'
+    const IAM_USER_SECRET = 'process.env.IAMUser_Secret_key' 
+
+    let s3bucket = new AWS.S3({
+        accesskeyid:IAM_USER_KEY,
+        secretAccessKey:IAM_USER_SECRET,
+        Bucket:BUCKET_NAME
+    })
+
+    var params = {
+        Bucket:BUCKET_NAME,
+        Key:filename,
+        Body:data,
+        ACL:'public-read'          //Make file publically accesable
+    }
+
+    return new Promise((resolve, reject) => {
+        s3bucket.upload(params, (err, s3response) =>{
+            if(err){
+                console.log('Something went wrong', err)
+                reject(err)
+            }else{
+                console.log('success', s3response);
+                resolve(s3response.Location)
+            }
+        })       
+    })
+}
 
 var instance = new Razorpay({ 
     key_id: process.env.Key_Id, 
@@ -91,6 +123,8 @@ exports.verify = (req,res,next) =>{
     console.log(isValid)
     if(isValid){
         res.json({success:true})
+    }else{
+        res.status(400).json({err:"transaction failed"})
     }
 }
 
@@ -109,4 +143,17 @@ exports.daily = (req,res,next) =>{
         })
         res.json(daily_list)
     })
+}
+
+exports.download = async (req,res) =>{
+    if (req.premium){
+        const userId = req.user.id
+        const expense = await req.user.getRecords()
+        const string_expense = JSON.stringify(expense)
+        const filename = `expense${userId}/${new Date()}.txt`
+        const fileurl = uploadtoS3(string_expense,filename)
+        res.status(200).json({success:true,fileurl})
+    }else{
+        res.json({err:"You are not Subscribe to Premium membership"})
+    }
 }

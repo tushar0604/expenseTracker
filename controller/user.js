@@ -49,17 +49,18 @@ exports.logged_in = (req,res,next) =>{
     })
     .then(user => {
         if (!user){
-            return res.json("The Email address doesn't exist.")
+            return res.status(400).json({status:"The Email address doesn't exist."})
         }else {
             console.log(user.id)
             bcrypt.compare(req.body.password,user.password)
             .then(result =>{
-                // console.log(result)
+                console.log('This is result', result)
                 if (result){
                     const token = generateAccessToken({username:user.id,premium:user.premium});
-                    res.json({token:token,redirect:'/main/home'});
+                    console.log('This is token', token)
+                    res.status(200).json({token:token,redirect:'/main/home'});
                 } else{
-                    res.json('Incorrect Password')
+                    res.status(400).json({status:'Incorrect Password'})
                 }
             })
         }
@@ -70,11 +71,9 @@ exports.logged_in = (req,res,next) =>{
 exports.reset = async (req,res,next) =>{
     const id = req.query.id
     if(!id){
-        console.log('This is step 1')
         const email = req.body.email
         user.findOne({where:{email:email}})
         .then(user=>{
-            console.log('This is step 2')
             const id = uuidv4()
             req.user = user
             user.createPassReset({request:id,status:true})
@@ -84,7 +83,6 @@ exports.reset = async (req,res,next) =>{
         })
     }
     else{
-        console.log('This is step 4')
         const check = await resetReq.findOne({
             where:{
                 request:id,
@@ -93,10 +91,8 @@ exports.reset = async (req,res,next) =>{
         })
         if(check===null){
             res.json({error:'link got expire'})
-            console.log('This is step 5')
         }
         else{
-            console.log('This is step 5')
             await resetReq.update({status:false},{
                 where:{
                     request:id
@@ -104,7 +100,6 @@ exports.reset = async (req,res,next) =>{
             }).catch(err=>console.log(err))
             await bcrypt.hash(req.body.password,12)
             .then(hash_pass => {
-                console.log('This is step 6')
                 user.update({password:hash_pass},{
                     where:{email:req.body.email}
                     }
@@ -117,7 +112,6 @@ exports.reset = async (req,res,next) =>{
 }
 
 exports.resetRequest = (req,res,next) =>{
-    console.log('This is step 3')
     const {id} = req.params.reset_request
     res.sendFile(path.join(path.dirname(process.mainModule.filename),
     'view','file.html'))

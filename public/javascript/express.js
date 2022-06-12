@@ -11,7 +11,7 @@ premium.addEventListener('click', async ()=>{
         }
     })
     .then(response =>{
-        // console.log('This is the response',response)
+        console.log('This is the response',response)
         if (response.data){
             console.log(close)
             two.classList.add('active')

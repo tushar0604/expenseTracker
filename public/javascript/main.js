@@ -13,8 +13,13 @@ async function handleSubmit(event) {
     }
     await axios.post('http://localhost:3000/logged-in',obj)
     .then(response => {
-        sessionStorage.setItem('token', response.data.token);
-        window.location.href = response.data.redirect;
+        if (response.status===200){
+            sessionStorage.setItem('token', response.data.token);
+            window.location.href = '/main/home';
+        }else{
+            console.log(response.data.status)
+        }
+        
     })
     .catch(err =>{console.log(err)})
   }
