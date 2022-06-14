@@ -1,8 +1,10 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const path = require('path')
-const user = require('./router/user')
+const dotenv = require('dotenv');
+dotenv.config();
 
+const user = require('./router/user')
 const record = require('./model/record')
 const users = require('./model/user')
 const sequelize = require('./util/database')

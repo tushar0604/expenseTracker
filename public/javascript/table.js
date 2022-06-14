@@ -30,16 +30,6 @@ function createTable(response){
         tr.appendChild(td4)
         table.appendChild(tr)
     });
-    // let a = Math.ceil(response.data.total/view.value)-1
-    // let i=1
-    // while (i<a) {
-    //     let btn = document.createElement('button')
-    //     btn.id = `page-${i+1}`
-    //     btn.className = 'page'
-    //     btn.innerHTML = i+1
-    //     page.appendChild(btn)
-    //     i++
-    // }
 }
 
 view.value = localStorage.getItem('view')
@@ -68,6 +58,7 @@ download.addEventListener('click', async (e)=>{
         }
     }).then(response => {
         if (response.status===200){
+            console.log(response.data.fileurl)
             window.location.href = response.data.fileurl
         }
     })

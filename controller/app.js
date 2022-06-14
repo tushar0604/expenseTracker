@@ -1,19 +1,20 @@
 const path = require('path')
 const bcrypt = require('bcryptjs')
 const users = require('../model/user.js')
-const record = require('../model/record')
 const jwt = require('jsonwebtoken');
 const Razorpay = require('razorpay')
 const AWS = require('aws-sdk')
+const dotenv = require('dotenv');
+dotenv.config();
 
 function uploadtoS3(data,filename){
-    const BUCKET_NAME = 'userexpense'
-    const IAM_USER_KEY = 'process.env.IAMUser_key'
-    const IAM_USER_SECRET = 'process.env.IAMUser_Secret_key' 
+    const BUCKET_NAME = 'expense2'
+    const USER_KEY = process.env.IAMUser_key
+    const USER_SECRET = process.env.IAMUser_Secret_key
 
     let s3bucket = new AWS.S3({
-        accesskeyid:IAM_USER_KEY,
-        secretAccessKey:IAM_USER_SECRET,
+        accessKeyId:USER_KEY,
+        secretAccessKey:USER_SECRET,
         Bucket:BUCKET_NAME
     })
 
@@ -166,7 +167,7 @@ exports.download = async (req,res) =>{
         const expense = await req.user.getRecords()
         const string_expense = JSON.stringify(expense)
         const filename = `expense${userId}/${new Date()}.txt`
-        const fileurl = uploadtoS3(string_expense,filename)
+        const fileurl = await uploadtoS3(string_expense,filename)
         res.status(200).json({success:true,fileurl})
     }else{
         res.json({err:"You are not Subscribe to Premium membership"})
